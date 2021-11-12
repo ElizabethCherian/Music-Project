@@ -1,0 +1,48 @@
+{% extends 'Music/Base.html' %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+    {% if album %}
+
+        <table class="searchalbum table table-active">
+            <tr class="head">
+                <th>Album Title</th>
+                <th>Genre</th>
+                <th>Artist</th>
+            </tr>
+        
+            {% for data in album %}
+            <tr>
+                <td>{{data.album_title}}</td>
+                <td>{{data.genre}}</td>
+                <td>{{data.artist}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+
+
+        
+
+    {% elif song %}   
+    <table class="searchalbum table table-active">
+        <tr class="head">
+            <th>Song Title</th>
+            <th>Album Title</th>
+            <th>File Type</th>
+        </tr>
+        {% for data in song %}
+        <tr>
+        <td>{{data.song_title}}</td>
+        <td>{{data.album.album_title}}</td>
+        <td>{{data.file_type}}</td>
+    </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h2>{{err}}</h2>
+    {% endif %}
+    </div>
+    
+{% endblock %}
+

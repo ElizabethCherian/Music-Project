@@ -1,0 +1,40 @@
+{% extends 'Music/Base.html' %}
+
+{% block body %}
+<div class="container-fluid pt-3 m-3">
+
+<form method="POST">
+    {% csrf_token %}
+    <table  cellpadding="15px" class="tablecolor">
+        
+    <tr>
+        <td>Username</td>
+        <td>{{form.username}}</td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td>{{form.password1}}</td>
+       
+    </tr>
+    
+    <tr>
+        <td>ConfirmPassword</td>
+        <td>{{form.password2}}</td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center"> <input type="submit" name="btnSave" value="Save" class="btn btn-primary"></td>
+    </tr>
+</table>
+</form>
+
+</div>
+<div class="m-3">
+    <ul>
+        <li>Your password must contain at least 8 characters.</li>    
+        <li>Your password can’t be a commonly used password.</li>
+        <li>Your password can’t be entirely numeric.</li>
+    </ul>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'Music/Base.html' %}
+
+{% block body %}
+<div class="container-fluid pt-3">
+    <form action="" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+    <table cellpadding=10px; class="tablecolor">
+        
+        <tr>
+            <td>Song</td> <td><Input type="text" name="song_title" value="{{song.song_title}}"></Input></td>
+        </tr>
+        
+        <tr>
+            <td>File type</td> <td><Input type="text" name="file_type" value="{{song.file_type}}"></Input></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" align="center"><button type="submit" class="btn btn-primary">Submit</button></td>
+        </tr>
+        
+    </table>
+    
+</form> 
+</div>
+{% endblock %}

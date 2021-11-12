@@ -1,0 +1,84 @@
+{% extends 'Music/Base.html' %}
+
+{% load custom_template_tags %}
+
+{% block body %}
+<div class="p-3 d-flex flex-wrap">
+    <div class="card details">
+
+        <img src="{{album.album_logo.url}}" class="card-img-top" height="250">
+        <div class="card-body">
+            <h2 class="card-title">{{album.album_title}}</h2>
+            <h6>Genre : {{album.genre}}</h6>
+            <h6>Artist : {{album.artist}}</h6>
+            <a href="{% url 'album-update' album.id %}" class="card-link">
+                <button type="submit" class="btn btn-secondary btn-md">Update</button></a>
+        </div>
+    </div>
+        <div style="min-width: 73%;">
+        <div class="d-flex">
+        <form action="{% url 'details' album.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-md">View All</button>
+        </form>
+            <a href="{% url 'add-song' album.id %}" class="px-3" style="font-size: 18px;">Add new song</a>
+        </div>
+    
+            {% if flag %}
+            <div class="table-responsive mt-4 mb-2">
+                <table class="table" cellpadding=12px style="vertical-align: middle;background-color: rgb(196, 217, 223);">
+                    <tr class="head">
+                        <th>Title</th>
+                        <th>Audio File</th>
+                        <th style="text-align: center;">Play</th>
+                        <th>Favorite</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for data in album.song_set.all %}
+                    <tr>
+                        <td>{{data.song_title}}</td>
+                        <td>{{data.file_type}}</td>
+                        <td><audio controls>
+                            <source src="../../{{data.audio}}" type="audio/ogg">
+                            <source src="../../{{data.audio}}" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                          </audio></td>
+
+                        {% if s %}
+                        {% setvar "false" as break %}
+                        
+                            {% for fv in favorite %}
+                            
+                                    {% if fv.song.id == data.id %}
+                                    {% setvar "true" as break %}
+                                    <td><img src="../../static/Music/Images/star.png" width="20px" height="20px"></td>
+                                    <td><a href="{% url 'unfavorite' data.id %}" style="text-decoration: none;">UnFavorite </a> </td>
+                                    
+                                    
+                                    {% else %}
+                                        {% if break != "true" and forloop.last %}
+                                        <td></td>   
+                                        <td><a href="{% url 'favorite' data.id %}" style="text-decoration: none;">Favorite </a> </td> 
+                                        {% endif %}  
+                                    {% endif %}
+                                
+                                    
+                            {% endfor %}
+
+                        {% else %}
+                            <td></td>   
+                            <td><a href="{% url 'favorite' data.id %}" style="text-decoration: none;">Favorite</a> </td>                     
+                        {% endif %}   
+                       
+                    </tr>
+                    
+                    {% endfor %}
+                </table>
+          
+            </div>
+            {% endif %}
+    
+        </div>
+    </div>       
+{% endblock %}
+

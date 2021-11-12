@@ -1,0 +1,26 @@
+
+{% extends 'Music/Base.html'%}
+
+{% block body %}
+
+{% if albums %}
+
+    <div class="d-flex flex-wrap mt-3 me-3">
+    {% for data in albums %}
+        <div class="card" id="albums">
+            <img src="{{data.album_logo.url}}" class="card-img-top" height="250">
+            <div class="card-body">
+                <h3>{{data.album_title}}</h3>
+                <h5>{{data.artist}}</h5>
+                <a href="{% url 'details' data.id %}"><button type="submit" class="btn btn-sm btn-info">View Details</button></a>
+                <a href="{% url 'delete' data.id %}"><button type="submit" class="btn btn-sm btn-danger">Delete</button></a>
+            </div>
+        </div>
+    {% endfor %}
+    </div> 
+{% else %}
+<h3 class="pt-3">You don't have an album</h3>
+{% endif %}
+
+{% endblock %}
+

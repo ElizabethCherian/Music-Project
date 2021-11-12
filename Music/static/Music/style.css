@@ -1,0 +1,65 @@
+
+
+
+#albums
+{
+    width: 300px;
+    padding: 15px;
+    margin-inline-start: 20px;
+    margin-bottom: 10px;
+    background: rgb(200, 215, 236);
+    
+}
+
+
+.details
+{
+    width: 300px;
+    max-height: 500px;
+    padding: 15px;
+    background: rgb(200, 215, 236);
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.details div h2,h6
+{
+    padding-bottom: 10px;
+}
+
+
+
+
+.songs
+{
+    margin:30px;
+}
+.songs .table
+{
+    vertical-align: middle; 
+    background-color: rgb(205, 205, 209);
+    font-size: 16px;
+    
+}
+
+table.searchalbum
+{
+    width:400px;
+    
+}
+
+
+
+.head
+{
+    background-color: rgb(142, 153, 173);
+}
+
+.tablecolor
+{
+    background-color: rgb(198, 208, 218);
+    border-radius: 13px;
+    
+    
+}
+

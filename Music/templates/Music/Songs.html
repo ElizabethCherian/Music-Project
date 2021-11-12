@@ -1,0 +1,50 @@
+{% extends 'Music/Base.html'%}
+
+{% block body %}
+
+
+
+    <div class="songs table-responsive">
+   {% if songs %}
+    
+        
+<table class="table">
+    <thead>
+    <tr class="head">
+        <th>Song</th>
+        <th>Album</th>
+        <th>File Type</th>
+        <th style="text-align: center;">Play</th>
+        <th></th>
+        <th></th>
+        
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in songs %}  
+
+    <tr>
+        <td>{{data.song_title}}</td>
+        <td>{{data.album.album_title}}</td>
+        <td>{{data.file_type}}</td>
+        <td style="text-align: center;"><audio controls>
+            <source src="../../{{data.audio}}" type="audio/ogg">
+            <source src="../../{{data.audio}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio></td>
+        
+        <td><a href="{% url 'delete-song' data.id %}"><button type="submit" class="btn btn-danger btn-sm">Delete</button></a></td>
+        <td><a href="{% url 'update-song' data.id %}"><button type="submit" class="btn btn-primary btn-sm">Update</button></a></td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+
+</table>   
+    
+
+{% else %}
+<h3 class="pt-3">You don't have any songs</h3>
+{% endif %}
+</div> 
+{% endblock %}

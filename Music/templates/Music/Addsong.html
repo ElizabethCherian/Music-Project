@@ -1,0 +1,14 @@
+{% extends 'Music/Base.html' %}
+
+{% block body %}
+<div class="container-fluid pt-3 mt-4 tablecolor" style="width: 380px;">
+    <form action="" method="POST" enctype="multipart/form-data" class="px-2">
+        {% csrf_token %}
+        <label for="title" class="pe-3">Song Title</label><input type="text" name="songtitle" id="title"><br><br>
+        <label for="file" class="pe-4">File Type</label><input type="text" name="filetype" id="file"><br><br>
+        <label for="audio" class="pe-4">Audio</label><input type="file" name="audio" id="audio"><br><br>
+        
+       <center><button type="submit" class="btn btn-primary">Submit</button></center> <br>
+    </form>
+</div>
+{% endblock %}
